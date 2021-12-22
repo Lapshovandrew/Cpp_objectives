@@ -21,6 +21,7 @@ int main() {
     }
     file.close();
 
+
     ifstream file_("in.txt");
 
     float X[length];
