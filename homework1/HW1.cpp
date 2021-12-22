@@ -35,9 +35,6 @@ int main() {
         XYs[i] = s;
         i = i + 1;
     }
-    XYs[0].erase(0, 1);
-    XYs[0].erase(0, 1);
-    XYs[0].erase(0, 1);
 
     file.close();
 
