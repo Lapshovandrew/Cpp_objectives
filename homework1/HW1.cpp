@@ -12,7 +12,7 @@ using namespace std;
 int main() {
     string s;
     string xy;
-    ifstream file("D:\\in.txt");
+    ifstream file("in.txt");
     int length = 0;
     int i = 0;
 
