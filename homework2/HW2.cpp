@@ -10,6 +10,15 @@
 
 using namespace std;
 
+float* del_first(float* arr, int length) {
+    float* s = new float[length - 1];
+    for(int i = 0; i < length - 1; i++) {
+        s[i] = arr[i+1];
+    }
+    delete arr;
+    return s;
+}
+
 float* reverse(float* X, int position) {
     float* Rev = new float[position];
     for(int i = 0, j = position - 1; j > -1; ++i, --j) {
@@ -40,7 +49,11 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             H0 = yi;
             vy = vy - 9.81*Xs[i]/vx;
             vx = vx;
-            k = check(Xs, Hs, H0, vx, vy, i);
+            //
+            Xs = del_first(Xs, length - 2);
+            Hs = del_first(Hs, length - 2);
+            //
+            k = check(Xs, Hs, H0, vx, vy, i - 1);
             sector = k + 1;
         }
     }
@@ -135,6 +148,7 @@ int main(int argc, char** argv) {
                 k = 0;
             }
         }
+
         else {
             k = check(Xs, Hs, H0, vx, vy, length);
         }
