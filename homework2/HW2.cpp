@@ -27,38 +27,30 @@ float* reverse(float* X, int position) {
     return Rev;
 }
 
-int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
-    int sector;
-    int k;
-    for(int i = 0; i < length - 2; i++) {
-        float yi = H0 + vy*Xs[i]/vx - 9.81*Xs[i]*Xs[i]/(2*vx*vx);
-        if ((yi < Hs[i]) && (i == 0)) {
-            return i;
-        }
-        else if (yi < Hs[i]) {
-            H0 = yi;
-            vx = -vx;
-            vy = vy + 9.81*Xs[i]/vx;
-            Xs = reverse(Xs, i);
-            Hs = reverse(Hs, i);
-            k = check(Xs, Hs, H0, vx, vy, i);
-            sector = i - 1;
+float Y2(float X, float vX, float vY, float H) {
+    float y0 = H + (vY*X/vX) - (9.81*X*X/(2*vX*vX));
+    return y0;
+}
 
-        }
-        else {
-            H0 = yi;
-            vy = vy - 9.81*Xs[i]/vx;
-            vx = vx;
-            
-            Xs = del_first(Xs, length - 2);
-            Hs = del_first(Hs, length - 2);
-     
-            //k = check(Xs, Hs, H0, vx, vy, length - 2 - i);
-            k = check(Xs, Hs, H0, vx, vy, length - 2);
-            sector = k + 1;
-        }
+int check(float H0, float vx, float vy, float* X, float* Y, int length, int N = 0, int f = 1) {
+    int S = N;
+    while((Y2(X[S], vx, vy, H0) >= Y[S])&&(S < length + 1)) {
+        S += f;
     }
-    return sector;
+    if (S == length + 1) {
+        return S;
+    }
+    else {
+        f = f*(-1);
+        vx = -vx;
+        vy = vy + 9.81*X[S]/vx;
+        X = reverse(X, S);
+        H0 = Y[S];
+        Y = reverse(Y, S);
+        length = S - 1;
+        N = check(H0, vx, vy, X, Y, length, S, f);
+        return N;
+    }
 }
 
 void Sort(float* X, float* Y, int length) {
@@ -151,7 +143,7 @@ int main(int argc, char** argv) {
         }
 
         else {
-            k = check(Xs, Hs, H0, vx, vy, length);
+            k = check(H0, vx, vy, Xs, Hs, length - 2);
         }
         cout << k << endl;
     }
