@@ -13,7 +13,7 @@ using namespace std;
 float* del_first(float* arr, int length) {
     float* s = new float[length - 1];
     for(int i = 0; i < length - 1; i++) {
-        s[i] = arr[i+1];
+        s[i] = arr[i + 1];
     }
     delete arr;
     return s;
@@ -21,8 +21,8 @@ float* del_first(float* arr, int length) {
 
 float* reverse(float* X, int position) {
     float* Rev = new float[position];
-    for(int i = 0, j = position; i < position; i++, j--) {
-        Rev[i] = abs(X[position] - X[j - 1]);
+    for(int i = 0, j = position - 1; j > -1; ++i, --j) {
+        Rev[i] = X[j];
     }
     return Rev;
 }
@@ -52,9 +52,9 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             //
             Xs = del_first(Xs, length - 2);
             Hs = del_first(Hs, length - 2);
-            length = length - 1;
-            k = check(Xs, Hs, H0, vx, vy, length);
-            sector = 1 + i;
+            //
+            k = check(Xs, Hs, H0, vx, vy, length - 2 - i);
+            sector = k + 1;
         }
     }
     return sector;
@@ -64,13 +64,13 @@ void Sort(float* X, float* Y, int length) {
     float temp;
     for(int i = 1; i < length; i++) {
         for(int j = 0; j < length - i; j++) {
-            if (X[j] > X[j+1]) {
+            if (X[j] > X[j + 1]) {
                 temp = X[j];
-                X[j] = X[j+1];
-                X[j+1] = temp;
+                X[j] = X[j + 1];
+                X[j + 1] = temp;
                 temp = Y[j];
-                Y[j] = Y[j+1];
-                Y[j+1] = temp;
+                Y[j] = Y[j + 1];
+                Y[j + 1] = temp;
             }
         }
     }
@@ -159,4 +159,3 @@ int main(int argc, char** argv) {
     }
     return 0;
 }
-
