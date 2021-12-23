@@ -120,6 +120,10 @@ int main() {
     else if ((right_d_el != -1)&&(left_d_el == -1)) {
         cout << "Rightmost: " << X[right_d_el + 1] << " " << Y[right_d_el + 1] << endl;
     }
+    else {
+        cout << "Leftmost: " << 0 << " " << 0 << endl;
+        cout << "Rightmost: " << 0 << " " << 0 << endl; 
+    }
 
 
     return 0;
