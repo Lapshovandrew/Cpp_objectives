@@ -33,8 +33,8 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             Xs = reverse(Xs, i);
             Hs = reverse(Hs, i);
             k = check(Xs, Hs, H0, vx, vy, i);
-            //sector = i - k;
-            sector = i - 1;
+            sector = i - k;
+            //sector = i - 1;
 
         }
         else {
@@ -42,8 +42,8 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             vy = vy - 9.81*Xs[i]/vx;
             vx = vx;
             k = check(Xs, Hs, H0, vx, vy, i);
-            //sector = k + i;
-            sector = k + 1;
+            sector = k + i;
+            //sector = k + 1;
         }
     }
     return sector;
