@@ -1,12 +1,4 @@
-#include <iostream>
-#include <cstring>
-#include <fstream>
-#include <malloc.h>
-#include <cmath>
-#include <stdio.h>
-#include <cstdlib>
 #include <bits/stdc++.h>
-#include <utility>
 
 using namespace std;
 
