@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
         if (length - 2 == 1) {
             double dt = Xs[0]/vx;
             double Y_ = H0 + vy*dt - 9.81*dt*dt/2;
-            if ((Y_ < Hs[0]) || (Y_ = Hs[0])) {
+            if (Y_ < Hs[0]) {
                 k = 0;
             }
             else {
