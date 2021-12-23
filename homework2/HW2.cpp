@@ -49,11 +49,12 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             H0 = yi;
             vy = vy - 9.81*Xs[i]/vx;
             vx = vx;
-            //
+            
             Xs = del_first(Xs, length - 2);
             Hs = del_first(Hs, length - 2);
-            //
-            k = check(Xs, Hs, H0, vx, vy, length - 2 - i);
+     
+            //k = check(Xs, Hs, H0, vx, vy, length - 2 - i);
+            k = check(Xs, Hs, H0, vx, vy, length + 2 - i);
             sector = k + 1;
         }
     }
