@@ -134,20 +134,23 @@ int main(int argc, char** argv) {
                 double Y_ = H0 + vy*dt - 9.81*dt*dt/2;
                 if (Y_ < Hs[0]) {
                     k = 0;
+                    cout << k << endl;
                 }
                 else {
                     k = 1;
+                    cout << k << endl;
                 }
             }
             else {
                 k = 0;
+                cout << k << endl;
             }
         }
 
         else {
             k = check(H0, vx, vy, Xs, Hs, length - 2);
+            cout << k << endl;
         }
-        cout << k << endl;
     }
     else {
         exit(1);
