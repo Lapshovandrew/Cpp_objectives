@@ -54,7 +54,7 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             Hs = del_first(Hs, length - 2);
      
             //k = check(Xs, Hs, H0, vx, vy, length - 2 - i);
-            k = check(Xs, Hs, H0, vx, vy, length + 2 - i);
+            k = check(Xs, Hs, H0, vx, vy, length - 2);
             sector = k + 1;
         }
     }
