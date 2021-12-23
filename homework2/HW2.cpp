@@ -134,6 +134,7 @@ int main(int argc, char** argv) {
             else {
                 k = 0;
             }
+        }
         else {
             k = check(Xs, Hs, H0, vx, vy, length);
         }
