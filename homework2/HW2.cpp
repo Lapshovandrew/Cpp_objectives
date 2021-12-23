@@ -33,8 +33,7 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             Xs = reverse(Xs, i);
             Hs = reverse(Hs, i);
             k = check(Xs, Hs, H0, vx, vy, i);
-            sector = i - k;
-            //sector = i - 1;
+            sector = i - 1;
 
         }
         else {
@@ -42,8 +41,7 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             vy = vy - 9.81*Xs[i]/vx;
             vx = vx;
             k = check(Xs, Hs, H0, vx, vy, i);
-            sector = k + i;
-            //sector = k + 1;
+            sector = k + 1;
         }
     }
     return sector;
@@ -123,15 +121,19 @@ int main(int argc, char** argv) {
         Sort(Xs, Hs, length - 2);
 
         if (length - 2 == 1) {
-            double dt = Xs[0]/vx;
-            double Y_ = H0 + vy*dt - 9.81*dt*dt/2;
-            if (Y_ <= Hs[0]) {
-                k = 0;
+            if (vx > 0) {
+                double dt = Xs[0]/vx;
+                double Y_ = H0 + vy*dt - 9.81*dt*dt/2;
+                if (Y_ <= Hs[0]) {
+                    k = 0;
+                }
+                else {
+                    k = 1;
+                }
             }
             else {
-                k = 1;
+                k = 0;
             }
-        }
         else {
             k = check(Xs, Hs, H0, vx, vy, length);
         }
