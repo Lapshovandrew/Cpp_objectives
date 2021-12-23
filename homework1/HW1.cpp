@@ -16,7 +16,12 @@ int max_el(float* A, int length) {
             index = i;
         }
     }
-    return index;
+    if (A[index] < 0) {
+        return -1;
+    }
+    else {
+        return index;
+    }
 }
 
 int min_el(float* A, int length) {
@@ -28,7 +33,12 @@ int min_el(float* A, int length) {
             index = i;
         }
     }
-    return index;
+    if (A[index] > 0) {
+        return -1;
+    }
+    else {
+        return index;
+    }
 }
 
 using namespace std;
@@ -100,14 +110,18 @@ int main() {
 
     int left_d_el = min_el(distances, length - 1);
     int right_d_el = max_el(distances, length - 1);
+    if ((right_d_el != -1) && (left_d_el != -1)) {
+        cout << "Leftmost: " << X[left_d_el + 1] << " " << Y[left_d_el + 1] << endl;
+        cout << "Rightmost: " << X[right_d_el + 1] << " " << Y[right_d_el + 1] << endl;
+    }
+    else if ((right_d_el == -1)&&(left_d_el != -1)) {
+        cout << "Leftmost: " << X[left_d_el + 1] << " " << Y[left_d_el + 1] << endl;
+    }
+    else if ((right_d_el != -1)&&(left_d_el == -1)) {
+        cout << "Rightmost: " << X[right_d_el + 1] << " " << Y[right_d_el + 1] << endl;
+    }
 
-    cout << "Leftmost: " << X[left_d_el + 1] << " " << Y[left_d_el + 1] << endl;
-    cout << "Rightmost: " << X[right_d_el + 1] << " " << Y[right_d_el + 1] << endl;
 
     return 0;
 
 }
-
-
-
-
