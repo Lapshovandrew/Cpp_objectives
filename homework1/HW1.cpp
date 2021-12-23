@@ -116,8 +116,10 @@ int main() {
     }
     else if ((right_d_el == -1)&&(left_d_el != -1)) {
         cout << "Leftmost: " << X[left_d_el + 1] << " " << Y[left_d_el + 1] << endl;
+        cout << "Rightmost: " << 0 << " " << 0 << endl; 
     }
     else if ((right_d_el != -1)&&(left_d_el == -1)) {
+        cout << "Leftmost: " << 0 << " " << 0 << endl;
         cout << "Rightmost: " << X[right_d_el + 1] << " " << Y[right_d_el + 1] << endl;
     }
     else {
