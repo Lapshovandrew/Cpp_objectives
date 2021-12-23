@@ -21,8 +21,8 @@ float* del_first(float* arr, int length) {
 
 float* reverse(float* X, int position) {
     float* Rev = new float[position];
-    for(int i = 0, j = position - 1; j > -1; ++i, --j) {
-        Rev[i] = X[j];
+    for(int i = 0, j = position; i < position; i++, j--) {
+        Rev[i] = abs(X[position] - X[j - 1]);
     }
     return Rev;
 }
@@ -52,9 +52,9 @@ int check(float* Xs, float* Hs, float H0, float vx, float vy, float length) {
             //
             Xs = del_first(Xs, length - 2);
             Hs = del_first(Hs, length - 2);
-            //
-            k = check(Xs, Hs, H0, vx, vy, i - 1);
-            sector = k + 1;
+            length = length - 1;
+            k = check(Xs, Hs, H0, vx, vy, length);
+            sector = 1 + i;
         }
     }
     return sector;
@@ -159,3 +159,4 @@ int main(int argc, char** argv) {
     }
     return 0;
 }
+
